@@ -22,7 +22,7 @@ public class Customer {
         String result = "Rental Record for " + getName() + "\n";
 
         for (Rental each : this.rentals) {
-            double thisAmount = each.amountFor();
+            double thisAmount = each.getCharge();
             // add frequent renter points
             frequentRenterPoints++;
             // add bonus for a two day new release rental
