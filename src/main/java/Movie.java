@@ -11,15 +11,12 @@ public class Movie {
         this.setPriceCode(priceCode);
     }
 
-    public int getPriceCode() {
-        return price.getPriceCode();
-    }
-
     public void setPriceCode(int priceCode) {
         switch (priceCode) {
             case REGULAR: price = new RegularPrice(); break;
             case NEW_RELEASE: price = new NewReleasePrice(); break;
             case CHILDRENS: price = new ChildrensPrice(); break;
+            default: throw new IllegalArgumentException("Incorrect Price Code");
         }
     }
 
@@ -31,7 +28,7 @@ public class Movie {
         return price.getCharge(daysRented);
     }
 
-    int getFrequentRenterPoints(int daysRented) {
+    public int getFrequentRenterPoints(int daysRented) {
         return price.getFrequentRenterPoints(daysRented);
     }
 }

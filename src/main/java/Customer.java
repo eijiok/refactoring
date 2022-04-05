@@ -30,7 +30,7 @@ public class Customer {
     private int getFrequentRenterPoints() {
         int frequentRenterPoints = 0;
         for (Rental each : this.rentals) {
-            frequentRenterPoints += each.movie.getFrequentRenterPoints(each.getDaysRented());
+            frequentRenterPoints += each.getMovie().getFrequentRenterPoints(each.getDaysRented());
         }
         return frequentRenterPoints;
     }
