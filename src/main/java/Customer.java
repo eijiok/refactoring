@@ -19,14 +19,13 @@ public class Customer {
     public String statement() {
         String result = "Rental Record for " + getName() + "\n";
 
-        int frequentRenterPoints = getFrequentRenterPoints();
         for (Rental each : this.rentals) {
             //show figures for this rental
             result += "\t" + each.getMovie().getTitle() + "\t" + each.getCharge() + "\n";
         }
         //add footer lines
         result += "Amount owed is " + getTotalCharge() + "\n";
-        result += "You earned " + frequentRenterPoints + " frequent renter points";
+        result += "You earned " + getFrequentRenterPoints() + " frequent renter points";
         return result;
     }
 
