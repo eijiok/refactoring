@@ -7,4 +7,9 @@ public class NewReleasePrice extends Price {
     double getCharge(int daysRented) {
         return daysRented * 3;
     }
+
+    int getFrequentRenterPoints(int daysRented) {
+        if (daysRented <= 1) return 1;
+        return 2;
+    }
 }

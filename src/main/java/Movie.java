@@ -31,4 +31,7 @@ public class Movie {
         return price.getCharge(daysRented);
     }
 
+    int getFrequentRenterPoints(int daysRented) {
+        return price.getFrequentRenterPoints(daysRented);
+    }
 }
