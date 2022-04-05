@@ -8,15 +8,15 @@ public class Movie {
 
     public Movie(String title, int priceCode) {
         this.title = title;
-        this.priceCode = priceCode;
+        this.setPriceCode(priceCode);
     }
 
     public int getPriceCode() {
         return priceCode;
     }
 
-    public void setPriceCode(int arg) {
-        priceCode = arg;
+    public void setPriceCode(int priceCode) {
+        this.priceCode = priceCode;
     }
 
     public String getTitle() {
