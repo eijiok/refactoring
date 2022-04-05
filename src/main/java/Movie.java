@@ -4,7 +4,7 @@ public class Movie {
     public static final int CHILDRENS = 2;
 
     private String title;
-    private Price price;
+    Price price;
 
     public Movie(String title, int priceCode) {
         this.title = title;
@@ -27,24 +27,4 @@ public class Movie {
         return title;
     }
 
-    double getCharge(int daysRented) {
-        double result = 0;
-        //determine amounts for each line
-        switch (getPriceCode()) {
-            case REGULAR:
-                result += 2;
-                if (daysRented > 2)
-                    result += (daysRented - 2) * 1.5;
-                break;
-            case NEW_RELEASE:
-                result += daysRented * 3;
-                break;
-            case CHILDRENS:
-                result += 1.5;
-                if (daysRented > 3)
-                    result += (daysRented - 3) * 1.5;
-                break;
-        }
-        return result;
-    }
 }
