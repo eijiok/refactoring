@@ -4,7 +4,7 @@ public class Movie {
     public static final int CHILDRENS = 2;
 
     private String title;
-    Price price;
+    private Price price;
 
     public Movie(String title, int priceCode) {
         this.title = title;
@@ -25,6 +25,10 @@ public class Movie {
 
     public String getTitle() {
         return title;
+    }
+
+    public double getCharge(int daysRented) {
+        return price.getCharge(daysRented);
     }
 
 }
