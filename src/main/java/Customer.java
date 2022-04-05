@@ -20,7 +20,7 @@ public class Customer {
         String result = "Rental Record for " + getName() + "\n";
 
         for (Rental each : this.rentals) {
-            result += "\t" + each.getMovie().getTitle() + "\t" + each.getCharge() + "\n";
+            result += "\t" + each.getMovie().getTitle() + "\t" + each.getMovie().getCharge(each.getDaysRented()) + "\n";
         }
         result += "Amount owed is " + getTotalCharge() + "\n";
         result += "You earned " + getFrequentRenterPoints() + " frequent renter points";
@@ -38,7 +38,7 @@ public class Customer {
     private double getTotalCharge() {
         double totalAmount = 0;
         for (Rental each : this.rentals) {
-            totalAmount += each.getCharge();
+            totalAmount += each.movie.getCharge(each.getDaysRented());
         }
         return totalAmount;
     }
