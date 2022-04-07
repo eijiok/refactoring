@@ -120,20 +120,21 @@ class CustomerTest {
 
     static long K = 1000;
 
+    @Test
     void perfomanceTest() {
         long init = System.currentTimeMillis();
         for (int i = 0; i < 10 * K; i++) {
-            runTest();
+            runTest(i, init);
         }
         System.out.println(System.currentTimeMillis() - init);
     }
 
-    private void runTest() {
-        Customer customer = new Customer("Eiji Okuda");
+    private void runTest(int j, long init) {
+        Customer customer = new Customer("Eiji Okuda" + init);
         for (int i = 0; i < 100; i++) {
-            customer.addRental(new Rental(new Movie("The Godfather" + i, Movie.REGULAR), i + 1));
-            customer.addRental(new Rental(new Movie("The Northman" + i, Movie.NEW_RELEASE), i + 1));
-            customer.addRental(new Rental(new Movie("The Lion King" + i, Movie.CHILDRENS), i + 1));
+            customer.addRental(new Rental(new Movie(j + "The Godfather" + init + i, Movie.REGULAR), i + 1));
+            customer.addRental(new Rental(new Movie(j + "The Northman" + init + i, Movie.NEW_RELEASE), i + 1));
+            customer.addRental(new Rental(new Movie(j + "The Lion King" + init + i, Movie.CHILDRENS), i + 1));
         }
         customer.statement();
     }
