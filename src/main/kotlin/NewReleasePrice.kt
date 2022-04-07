@@ -1,15 +1,5 @@
-public class NewReleasePrice extends Price {
-    @Override
-    int getPriceCode() {
-        return Movie.NEW_RELEASE;
-    }
+class NewReleasePrice : Price(Movie.NEW_RELEASE) {
+    override fun getCharge(daysRented: Int) = daysRented * 3.0
 
-    double getCharge(int daysRented) {
-        return daysRented * 3;
-    }
-
-    int getFrequentRenterPoints(int daysRented) {
-        if (daysRented <= 1) return 1;
-        return 2;
-    }
+    override fun getFrequentRenterPoints(daysRented: Int) = if (daysRented <= 1) 1 else 2
 }

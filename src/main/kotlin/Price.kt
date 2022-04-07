@@ -1,9 +1,5 @@
-public abstract class Price {
-    abstract int getPriceCode();
+abstract class Price(priceCode: Int) {
+    abstract fun getCharge(daysRented: Int): Double
 
-    abstract double getCharge(int daysRented);
-
-    int getFrequentRenterPoints(int daysRented) {
-        return 1;
-    }
+    open fun getFrequentRenterPoints(daysRented: Int) = 1
 }

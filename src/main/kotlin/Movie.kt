@@ -1,34 +1,32 @@
-public class Movie {
-    public static final int REGULAR = 0;
-    public static final int NEW_RELEASE = 1;
-    public static final int CHILDRENS = 2;
+import java.lang.IllegalArgumentException
 
-    private String title;
-    private Price price;
+class Movie(val title: String, priceCode: Int) {
+    private lateinit var price: Price
 
-    public Movie(String title, int priceCode) {
-        this.title = title;
-        this.setPriceCode(priceCode);
+    init {
+        setPriceCode(priceCode)
     }
 
-    public void setPriceCode(int priceCode) {
-        switch (priceCode) {
-            case REGULAR: price = new RegularPrice(); break;
-            case NEW_RELEASE: price = new NewReleasePrice(); break;
-            case CHILDRENS: price = new ChildrensPrice(); break;
-            default: throw new IllegalArgumentException("Incorrect Price Code");
+    fun setPriceCode(priceCode: Int) {
+        price = when (priceCode) {
+            REGULAR -> RegularPrice()
+            NEW_RELEASE -> NewReleasePrice()
+            CHILDRENS -> ChildrensPrice()
+            else -> throw IllegalArgumentException("Incorrect Price Code")
         }
     }
 
-    public String getTitle() {
-        return title;
+    fun getCharge(daysRented: Int): Double {
+        return price.getCharge(daysRented)
     }
 
-    public double getCharge(int daysRented) {
-        return price.getCharge(daysRented);
+    fun getFrequentRenterPoints(daysRented: Int): Int {
+        return price.getFrequentRenterPoints(daysRented)
     }
 
-    public int getFrequentRenterPoints(int daysRented) {
-        return price.getFrequentRenterPoints(daysRented);
+    companion object {
+        const val REGULAR = 0
+        const val NEW_RELEASE = 1
+        const val CHILDRENS = 2
     }
 }

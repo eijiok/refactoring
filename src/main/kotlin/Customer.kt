@@ -1,46 +1,32 @@
-import java.util.ArrayList;
+import java.util.ArrayList
 
-public class Customer {
-    private String name;
-    private ArrayList<Rental> rentals = new ArrayList<>();
+class Customer(val name: String) {
+    private val rentals: ArrayList<Rental> = ArrayList<Rental>()
 
-    public Customer(String name) {
-        this.name = name;
+    fun addRental(rental: Rental) {
+        rentals.add(rental)
     }
 
-    public void addRental(Rental arg) {
-        rentals.add(arg);
+    fun statement(): String {
+        var result = "Rental Record for $name\n"
+        for (each in rentals)
+            result += "	${each.movie.title}	${each.movie.getCharge(each.daysRented)}\n"
+        result += "Amount owed is $totalCharge\n"
+        result += "You earned $frequentRenterPoints frequent renter points"
+        return result
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String statement() {
-        String result = "Rental Record for " + getName() + "\n";
-
-        for (Rental each : this.rentals) {
-            result += "\t" + each.getMovie().getTitle() + "\t" + each.getMovie().getCharge(each.getDaysRented()) + "\n";
+    private val frequentRenterPoints: Int
+        private get() {
+            var frequentRenterPoints = 0
+            for (each in rentals) frequentRenterPoints += each.movie.getFrequentRenterPoints(each.daysRented)
+            return frequentRenterPoints
         }
-        result += "Amount owed is " + getTotalCharge() + "\n";
-        result += "You earned " + getFrequentRenterPoints() + " frequent renter points";
-        return result;
-    }
 
-    private int getFrequentRenterPoints() {
-        int frequentRenterPoints = 0;
-        for (Rental each : this.rentals) {
-            frequentRenterPoints += each.getMovie().getFrequentRenterPoints(each.getDaysRented());
+    private val totalCharge: Double
+        private get() {
+            var totalAmount = 0.0
+            for (each in rentals) totalAmount += each.movie.getCharge(each.daysRented)
+            return totalAmount
         }
-        return frequentRenterPoints;
-    }
-
-    private double getTotalCharge() {
-        double totalAmount = 0;
-        for (Rental each : this.rentals) {
-            totalAmount += each.getMovie().getCharge(each.getDaysRented());
-        }
-        return totalAmount;
-    }
-
 }
