@@ -118,5 +118,23 @@ class CustomerTest {
                 "You earned 1 frequent renter points", customer.statement());
     }
 
+    static long K = 1000;
 
+    void perfomanceTest() {
+        long init = System.currentTimeMillis();
+        for (int i = 0; i < 10 * K; i++) {
+            runTest();
+        }
+        System.out.println(System.currentTimeMillis() - init);
+    }
+
+    private void runTest() {
+        Customer customer = new Customer("Eiji Okuda");
+        for (int i = 0; i < 100; i++) {
+            customer.addRental(new Rental(new Movie("The Godfather" + i, Movie.REGULAR), i + 1));
+            customer.addRental(new Rental(new Movie("The Northman" + i, Movie.NEW_RELEASE), i + 1));
+            customer.addRental(new Rental(new Movie("The Lion King" + i, Movie.CHILDRENS), i + 1));
+        }
+        customer.statement();
+    }
 }
